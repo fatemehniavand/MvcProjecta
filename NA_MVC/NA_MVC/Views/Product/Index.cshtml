@@ -1,0 +1,104 @@
+﻿@model List<NA_MVC.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #tbl {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #tbl td, #tbl th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #tbl tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #tbl tr:hover {
+            background-color: #ddd;
+        }
+
+        #tbl th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+</style>
+
+<h2 style="direction:rtl;padding-right:15px;">
+    
+   @Html.ActionLink("افزودن  محصول جدید", "Create", new { Name = "" }, new { @class = "btn btn-success" })
+    
+</h2>
+<div class="col-md-12" style="direction:rtl">
+    <table style="direction:rtl;width:900px;" id="tbl" >
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(x => x.FirstOrDefault().Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(x => x.FirstOrDefault().CategoryId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(x => x.FirstOrDefault().CountryId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(x => x.FirstOrDefault().CompanyId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(x => x.FirstOrDefault().BrandName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(x => x.FirstOrDefault().ModelNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(x => x.FirstOrDefault().Description)
+                </th>
+
+                <td></td>
+            </tr>
+        </thead>
+        
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.Category.Name
+                </td>
+                <td>
+                    @item.Country.Name
+                </td>
+                <td>
+                    @item.Company.Name
+                </td>
+                <td>
+                    @item.BrandName
+                </td>
+                <td>
+                    @item.ModelNo
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                <td>
+                    @Html.ActionLink("ویرایش", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("حذف", "Delete", new { Id = item.Id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
